@@ -33,5 +33,3 @@ $.tinyscroller.liveEventify();
 depends on:
 
 jQuery 1.4.3
-jQuery UI 1.8.5
-jQuery UI Widget 1.8.5
