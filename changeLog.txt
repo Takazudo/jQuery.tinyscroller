@@ -1,0 +1,5 @@
+2010-10-29 Takeshi Takatsudo <takazudo@gmail.com>
+	
+	* ver 0.1.0
+	release.
+
