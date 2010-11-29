@@ -1,7 +1,7 @@
 /*
  * $.tinyscroller
  *
- * version 0.1.1 (2010/10/29)
+ * version 0.1.1 (2010/11/29)
  * Copyright (c) 2010 Takeshi Takatsudo (takazudo[at]gmail.com)
  * MIT license
  * original: Tiny Scrolling http://lab.centralscrutinizer.it/the-tiny-scrollings/ (thanks Marco Rosella)
@@ -9,7 +9,7 @@
 =============================================================================
  depends on
 -----------------------------------------------------------------------------
- * jQuery 1.4.3
+ * jQuery 1.4.4
  *
  */
 (function($){ // start $=jQuery encapsulation
