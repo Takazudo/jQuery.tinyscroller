@@ -32,4 +32,4 @@ $.tinyscroller.liveEventify();
 
 depends on:
 
-jQuery 1.4.3
+jQuery 1.4.4

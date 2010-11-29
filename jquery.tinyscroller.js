@@ -1,12 +1,15 @@
 /*
  * $.tinyscroller
  *
- * version 0.1.0 (2010/10/29)
+ * version 0.1.1 (2010/10/29)
  * Copyright (c) 2010 Takeshi Takatsudo (takazudo[at]gmail.com)
  * MIT license
  * original: Tiny Scrolling http://lab.centralscrutinizer.it/the-tiny-scrollings/ (thanks Marco Rosella)
- * depends on
- *     jQuery 1.4.3
+ *
+=============================================================================
+ depends on
+-----------------------------------------------------------------------------
+ * jQuery 1.4.3
  *
  */
 (function($){ // start $=jQuery encapsulation
@@ -30,7 +33,6 @@ function scrollTop(){
 }
 
 
-
 /**
  * $.Tinyscroller
  */
@@ -41,6 +43,7 @@ $.Tinyscroller = function(){
 		speed : 30, // scrollstep interval
 		maxStep: 2000, // max distance(px) per scrollstep
 		slowdownRate: 3, // something to define slowdown rate
+		stepInterval: 5,
 
 		/* callbacks */
 		everyscrollstart: $.noop,
@@ -84,26 +87,30 @@ $.Tinyscroller.prototype = {
 		return this;
 	},
 	_stepToNext: function(){
-		var top  = scrollTop();
-		var o = this._currentScrollOptions;
-		var endDistance, offset;
-		if(this._endY > top) {  
-			endDistance = Math.round( ($doc.height() - (top + $win.height())) /o.slowdownRate);
-			endDistance = Math.min(Math.round((this._endY-top)/ o.slowdownRate), endDistance);
-			offset = Math.max(2, Math.min(endDistance, o.maxStep));
-		} else {
-			offset = - Math.min(Math.abs(Math.round((this._endY-top)/ o.slowdownRate)), o.maxStep);
-		}
-		window.scrollTo(0, top + offset);
-		if(this._cancelNext){
-			this._cancelNext = false;
-			this._scrollEndHandler();
-		}else if(Math.abs(top - this._endY) <= 1 || scrollTop() == top){
-			window.scrollTo(0, this._endY);
-			this._scrollEndHandler();
-		}else{
-			setTimeout( $.proxy(this._stepToNext, this), o.speed );
-		}
+		var self = this;
+		setTimeout(function(){
+			var top  = scrollTop();
+			var o = self._currentScrollOptions;
+			var endDistance, offset;
+			if(self._endY > top) {  
+				endDistance = Math.round( ($doc.height() - (top + $win.height())) /o.slowdownRate);
+				endDistance = Math.min(Math.round((self._endY-top)/ o.slowdownRate), endDistance);
+				offset = Math.max(2, Math.min(endDistance, o.maxStep));
+			} else {
+				offset = - Math.min(Math.abs(Math.round((self._endY-top)/ o.slowdownRate)), o.maxStep);
+			}
+			window.scrollTo(0, top + offset);
+			if(self._cancelNext){
+				self._cancelNext = false;
+				self._scrollEndHandler();
+			}else if(Math.abs(top - self._endY) <= 1 || scrollTop() == top){
+				window.scrollTo(0, self._endY);
+				self._scrollEndHandler();
+			}else{
+				setTimeout( $.proxy(self._stepToNext, self), o.speed );
+			}
+		},self.options.stepInterval);
+		return this;
 	},
 	_start: function(){
 		var o = this._currentScrollOptions;
@@ -157,15 +164,15 @@ $.Tinyscroller.prototype = {
 		$.extend(this.options, options);
 		return this;
 	},
-	liveEventify: function(selector, options){
-		selector = selector || 'a[href^=#]:not([href=#]):not([href^=#!)';
+	liveEventify: function(selector){
+		selector = selector || 'a[href^=#]:not([href^=#!)';
 		var self = this;
 		$(selector).live('click', function(e){
 			if(!self.isValidAnchor(this)){
 				return;
 			}
 			e.preventDefault();
-			$(this).invokeTinyscroll(options);
+			$(this).invokeTinyscroll();
 		});
 	},
 	isValidAnchor: function(element){
@@ -254,5 +261,3 @@ $.fn.tinyscrollable = function(options){
 
 
 })(jQuery); // end $=jQuery encapsulation
-
-
