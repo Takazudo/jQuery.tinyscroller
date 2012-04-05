@@ -4,13 +4,13 @@ Simple smooth scroller with events and API.
 
 ## demos
 
-* [Basic](https://github.com/Takazudo/jQuery.tinyscroller/demos/basic.html)
-* [Live](https://github.com/Takazudo/jQuery.tinyscroller/demos/live.html)
-* [Events](https://github.com/Takazudo/jQuery.tinyscroller/demos/events.html)
-* [API call](https://github.com/Takazudo/jQuery.tinyscroller/demos/apicall.html)
-* [API call - stop](https://github.com/Takazudo/jQuery.tinyscroller/demos/stop.html)
-* [Deferred](https://github.com/Takazudo/jQuery.tinyscroller/demos/deferred.html)
-* [Options](https://github.com/Takazudo/jQuery.tinyscroller/demos/options.html)
+* [Basic](http://takazudo.github.com/jQuery.tinyscroller/demos/basic.html)
+* [Live](http://takazudo.github.com/jQuery.tinyscroller/demos/live.html)
+* [Events](http://takazudo.github.com/jQuery.tinyscroller/demos/events.html)
+* [API call](http://takazudo.github.com/jQuery.tinyscroller/demos/apicall.html)
+* [API call - stop](http://takazudo.github.com/jQuery.tinyscroller/demos/stop.html)
+* [Deferred](http://takazudo.github.com/jQuery.tinyscroller/demos/deferred.html)
+* [Options](http://takazudo.github.com/jQuery.tinyscroller/demos/options.html)
 
 ## Usage
 
