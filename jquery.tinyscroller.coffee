@@ -185,7 +185,7 @@
       # check whether the scrolling was done or not
       else if (abs(top - self._endY) <= 1) or (ns.scrollTop() is top)
         window.scrollTo 0, @_endY
-        @_scrollDefer.resolve()
+        @_scrollDefer?.resolve()
 
       # else, keep going
       else

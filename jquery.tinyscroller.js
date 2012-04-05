@@ -148,7 +148,7 @@
       };
 
       Scroller.prototype._stepToNext = function() {
-        var docH, endDistance, o, offset, planA, planB, top, winH;
+        var docH, endDistance, o, offset, planA, planB, top, winH, _ref;
         top = ns.scrollTop();
         o = this.options;
         if (this._endY > top) {
@@ -168,7 +168,7 @@
           this._scrollDefer.reject();
         } else if ((abs(top - self._endY) <= 1) || (ns.scrollTop() === top)) {
           window.scrollTo(0, this._endY);
-          this._scrollDefer.resolve();
+          if ((_ref = this._scrollDefer) != null) _ref.resolve();
         } else {
           setTimeout(this._stepToNext, o.speed);
         }
