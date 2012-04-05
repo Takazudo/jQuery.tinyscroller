@@ -1,0 +1,19 @@
+{
+  "name": "jQuery.tinyscroller",
+  "description": "smooth scroll. has events and APIs.",
+  "version": "0.2.0",
+  "homepage": "https://github.com/Takazudo/jQuery.tinyscroller",
+  "author": {
+    "name": "\"Takazudo\" Takeshi Takatsudo",
+    "url": "http://takazudo.github.com/blog/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Takazudo/jQuery.tinyscroller.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ]
+}
