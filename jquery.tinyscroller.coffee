@@ -126,7 +126,7 @@
       slowdownRate: 3 # something to define slowdown rate
       changehash: true # change hash after scrolling or not
       userskip: true # skip all scrolling steps if user scrolled manually while scrolling
-      selector: 'a[href^=#]:not(.apply-noscroll)'
+      selector: 'a[href^=#]:not(.apply-noscroll)' # selector for delegation event binding
 
     constructor: (options) ->
       @option options
