@@ -7,7 +7,7 @@
 module.exports = function(grunt){
 
   grunt.initConfig({
-    pkg: '<json:info.json>',
+    pkg: '<json:package.json>',
     meta: {
       banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
         ' <%= grunt.template.today("m/d/yyyy") %>\n' +
@@ -16,25 +16,25 @@ module.exports = function(grunt){
         ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
     },
     concat: {
-      '../jquery.tinyscroller.js': [ '<banner>', '../jquery.tinyscroller.js' ]
+      'jquery.tinyscroller.js': [ '<banner>', 'jquery.tinyscroller.js' ]
     },
     watch: {
       files: [
-        '../jquery.tinyscroller.coffee',
-        '../tests/qunit/test/test.coffee'
+        'jquery.tinyscroller.coffee',
+        'tests/qunit/test/test.coffee'
       ],
       tasks: 'coffee concat notifyOK'
     },
     uglify: {
-      '../jquery.tinyscroller.min.js': '../jquery.tinyscroller.js'
+      'jquery.tinyscroller.min.js': 'jquery.tinyscroller.js'
     },
     coffee: {
-      '../jquery.tinyscroller.js': [ '../jquery.tinyscroller.coffee' ],
-      '../tests/qunit/test/test.js' : [ '../tests/qunit/test/test.coffee' ]
+      'jquery.tinyscroller.js': [ 'jquery.tinyscroller.coffee' ],
+      'tests/qunit/test/test.js' : [ 'tests/qunit/test/test.coffee' ]
     }
   });
 
-  grunt.loadTasks('tasks');
+  grunt.loadTasks('_buildsrc/grunttasks');
   grunt.registerTask('default', 'coffee concat notifyOK');
 
 };
