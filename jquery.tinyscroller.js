@@ -1,4 +1,4 @@
-/*! jQuery.tinyscroller - v0.2.1 -  4/6/2012
+/*! jQuery.tinyscroller - v0.2.1 -  4/7/2012
  * https://github.com/Takazudo/jQuery.tinyscroller
  * Copyright (c) 2012 "Takazudo" Takeshi Takatsudo; Licensed MIT */
 
@@ -121,6 +121,7 @@
         maxStep: 2000,
         slowdownRate: 3,
         changehash: true,
+        userskip: true,
         selector: 'a[href^=#]:not(.apply-noscroll)'
       };
 
@@ -148,9 +149,15 @@
       };
 
       Scroller.prototype._stepToNext = function() {
-        var docH, endDistance, o, offset, planA, planB, top, winH, _ref;
+        var docH, endDistance, nextY, o, offset, planA, planB, top, winH, _ref, _ref2, _ref3;
         top = ns.scrollTop();
         o = this.options;
+        if (o.userskip && this._prevY && (top !== this._prevY)) {
+          window.scrollTo(0, this._endY);
+          if ((_ref = this._scrollDefer) != null) _ref.resolve();
+          this._prevY = null;
+          return this;
+        }
         if (this._endY > top) {
           docH = $doc.height();
           winH = $win.height();
@@ -162,13 +169,16 @@
         } else {
           offset = -min(abs(round((this._endY - top) / o.slowdownRate)), o.maxStep);
         }
-        window.scrollTo(0, top + offset);
+        nextY = top + offset;
+        window.scrollTo(0, nextY);
+        this._prevY = nextY;
         if (this._cancelNext) {
           this._cancelNext = false;
-          this._scrollDefer.reject();
+          if ((_ref2 = this._scrollDefer) != null) _ref2.reject();
         } else if ((abs(top - self._endY) <= 1) || (ns.scrollTop() === top)) {
           window.scrollTo(0, this._endY);
-          if ((_ref = this._scrollDefer) != null) _ref.resolve();
+          this._prevY = null;
+          if ((_ref3 = this._scrollDefer) != null) _ref3.resolve();
         } else {
           setTimeout(this._stepToNext, o.speed);
         }

@@ -125,6 +125,7 @@
       maxStep: 2000 # max distance(px) per scrollstep
       slowdownRate: 3 # something to define slowdown rate
       changehash: true # change hash after scrolling or not
+      userskip: true # skip all scrolling steps if user scrolled manually while scrolling
       selector: 'a[href^=#]:not(.apply-noscroll)'
 
     constructor: (options) ->
@@ -151,6 +152,14 @@
       top = ns.scrollTop() # current scrollposition
       o = @options
 
+      # if @_prevY and top were not same, it must the user scrolled manually.
+      # in such case, skip all scrolling immediately.
+      if o.userskip and @_prevY and (top isnt @_prevY)
+        window.scrollTo 0, @_endY
+        @_scrollDefer?.resolve()
+        @_prevY = null
+        return @
+
       # the end point is below the winow
       if @_endY > top
 
@@ -175,16 +184,19 @@
         offset = - min(abs(round((@_endY-top) / o.slowdownRate)), o.maxStep)
 
       # do scroll
-      window.scrollTo 0, (top + offset)
+      nextY = top + offset
+      window.scrollTo 0, nextY
+      @_prevY = nextY
 
       # if cancel was reserved, stop this
       if @_cancelNext
         @_cancelNext = false
-        @_scrollDefer.reject()
+        @_scrollDefer?.reject()
 
       # check whether the scrolling was done or not
       else if (abs(top - self._endY) <= 1) or (ns.scrollTop() is top)
         window.scrollTo 0, @_endY
+        @_prevY = null
         @_scrollDefer?.resolve()
 
       # else, keep going
