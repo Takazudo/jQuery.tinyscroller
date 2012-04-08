@@ -80,12 +80,10 @@
           ret[current] = false
         true
       matchesAny
-    if evalEach ['iPhone', 'iPod', 'iPad']
-      ret.appleDevice = true
-    evalEach ['Android']
+    if evalEach ['iphone', 'ipod', 'ipad'] or evalEach ['android']
+      ret.mobile = true
     ret
 
-  console.log ns.ua
 
   # ============================================================
   # event module
@@ -158,7 +156,7 @@
     _handleMobile: ->
       # iOS's scrollTop is pretty different from desktop browsers.
       # This feature must be false
-      if not ns.ua.appleDevice then return @
+      if not ns.ua.mobile then return @
       @options.userskip = false
       @
 

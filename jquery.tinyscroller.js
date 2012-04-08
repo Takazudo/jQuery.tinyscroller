@@ -69,11 +69,11 @@
         });
         return matchesAny;
       };
-      if (evalEach(['iPhone', 'iPod', 'iPad'])) ret.appleDevice = true;
-      evalEach(['Android']);
+      if (evalEach(['iphone', 'ipod', 'ipad'] || evalEach(['android']))) {
+        ret.mobile = true;
+      }
       return ret;
     })();
-    console.log(ns.ua);
     ns.Event = (function() {
 
       function Event() {
@@ -157,7 +157,7 @@
       }
 
       Scroller.prototype._handleMobile = function() {
-        if (!ns.ua.appleDevice) return this;
+        if (!ns.ua.mobile) return this;
         this.options.userskip = false;
         return this;
       };
