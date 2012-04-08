@@ -64,6 +64,18 @@
   ns.scrollTop = ->
     $doc.scrollTop() or document.documentElement.scrollTop or document.body.scrollTop or window.pageYOffset or 0
 
+  # browser detection
+
+  ns.ua = (->
+    ret = {}
+    ua = navigator.userAgent
+    $.each ['iPhone', 'iPod', 'iPad'], (i, current) ->
+      expr = new RegExp current, 'i'
+      res = false
+      if (Boolean ua.match(expr)) then res = true
+      if res then ret.appleDevice = true
+    ret
+  )()
 
   # ============================================================
   # event module
@@ -129,8 +141,16 @@
       selector: 'a[href^=#]:not(.apply-noscroll)' # selector for delegation event binding
 
     constructor: (options) ->
-      @option options
+      if options then @option options
+      @_handleMobile()
       super
+
+    _handleMobile: ->
+      # iOS's scrollTop is pretty different from desktop browsers.
+      # This feature must be false
+      if not ns.ua.appleDevice then return @
+      @options.userskip = false
+      @
 
     _invokeScroll: ->
       @trigger 'scrollstart', @_endY, @_reservedHash
@@ -233,11 +253,10 @@
       @
 
     option: (options) ->
-      if options
-        $.extend this.options, options
-        return @
-      else
-        return @options
+      if not options then return @options
+      $.extend this.options, options
+      @_handleMobile()
+      @
 
     live: (selector) ->
       selector = selector or @options.selector

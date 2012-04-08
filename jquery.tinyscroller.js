@@ -1,4 +1,4 @@
-/*! jQuery.tinyscroller - v0.2.2 -  4/7/2012
+/*! jQuery.tinyscroller - v0.2.2 -  4/8/2012
  * https://github.com/Takazudo/jQuery.tinyscroller
  * Copyright (c) 2012 "Takazudo" Takeshi Takatsudo; Licensed MIT */
 
@@ -49,6 +49,19 @@
     ns.scrollTop = function() {
       return $doc.scrollTop() || document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset || 0;
     };
+    ns.ua = (function() {
+      var ret, ua;
+      ret = {};
+      ua = navigator.userAgent;
+      $.each(['iPhone', 'iPod', 'iPad'], function(i, current) {
+        var expr, res;
+        expr = new RegExp(current, 'i');
+        res = false;
+        if (Boolean(ua.match(expr))) res = true;
+        if (res) return ret.appleDevice = true;
+      });
+      return ret;
+    })();
     ns.Event = (function() {
 
       function Event() {
@@ -126,9 +139,16 @@
       };
 
       function Scroller(options) {
-        this._stepToNext = __bind(this._stepToNext, this);        this.option(options);
+        this._stepToNext = __bind(this._stepToNext, this);        if (options) this.option(options);
+        this._handleMobile();
         Scroller.__super__.constructor.apply(this, arguments);
       }
+
+      Scroller.prototype._handleMobile = function() {
+        if (!ns.ua.appleDevice) return this;
+        this.options.userskip = false;
+        return this;
+      };
 
       Scroller.prototype._invokeScroll = function() {
         var _this = this;
@@ -202,12 +222,10 @@
       };
 
       Scroller.prototype.option = function(options) {
-        if (options) {
-          $.extend(this.options, options);
-          return this;
-        } else {
-          return this.options;
-        }
+        if (!options) return this.options;
+        $.extend(this.options, options);
+        this._handleMobile();
+        return this;
       };
 
       Scroller.prototype.live = function(selector) {
