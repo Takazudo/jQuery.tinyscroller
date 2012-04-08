@@ -50,18 +50,30 @@
       return $doc.scrollTop() || document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset || 0;
     };
     ns.ua = (function() {
-      var ret, ua;
+      var evalEach, ret, ua;
       ret = {};
       ua = navigator.userAgent;
-      $.each(['iPhone', 'iPod', 'iPad'], function(i, current) {
-        var expr, res;
-        expr = new RegExp(current, 'i');
-        res = false;
-        if (Boolean(ua.match(expr))) res = true;
-        if (res) return ret.appleDevice = true;
-      });
+      evalEach = function(keys) {
+        var matchesAny;
+        matchesAny = false;
+        $.each(keys, function(i, current) {
+          var expr;
+          expr = new RegExp(current, 'i');
+          if (Boolean(ua.match(expr))) {
+            ret[current] = true;
+            matchesAny = true;
+          } else {
+            ret[current] = false;
+          }
+          return true;
+        });
+        return matchesAny;
+      };
+      if (evalEach(['iPhone', 'iPod', 'iPad'])) ret.appleDevice = true;
+      evalEach(['Android']);
       return ret;
     })();
+    console.log(ns.ua);
     ns.Event = (function() {
 
       function Event() {

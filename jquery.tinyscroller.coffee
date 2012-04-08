@@ -66,16 +66,26 @@
 
   # browser detection
 
-  ns.ua = (->
+  ns.ua = do ->
     ret = {}
     ua = navigator.userAgent
-    $.each ['iPhone', 'iPod', 'iPad'], (i, current) ->
-      expr = new RegExp current, 'i'
-      res = false
-      if (Boolean ua.match(expr)) then res = true
-      if res then ret.appleDevice = true
+    evalEach = (keys) ->
+      matchesAny = false
+      $.each keys, (i, current) ->
+        expr = new RegExp current, 'i'
+        if (Boolean ua.match(expr))
+          ret[current] = true
+          matchesAny = true
+        else
+          ret[current] = false
+        true
+      matchesAny
+    if evalEach ['iPhone', 'iPod', 'iPad']
+      ret.appleDevice = true
+    evalEach ['Android']
     ret
-  )()
+
+  console.log ns.ua
 
   # ============================================================
   # event module
