@@ -1,44 +1,53 @@
----
-layout: default
-title: Stop
----
-<script>
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery.tinyscroller - Events with API call</title>
+<meta name="viewport" content="width=1000">
+<link rel="stylesheet" href="common/css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="../jquery.tinyscroller.js"></script>
+</head>
+<body><div id="all">
+
+<div class="mod-header">
+	<h1><a href="https://github.com/Takazudo/jQuery.tinyscroller">jQuery.tinyscroller</a></h1>
+</div>
+
+
+<div class="mod-main" id="main">
+
+	<div class="mod-article">
+		<h2>Events with API call</h2>
+		<script>
 var scroller = $.Tinyscroller();
-scroller.bind('scrollcancel', function(){
-	alert('canceled!');
+scroller.bind('scrollstart', function(){
+	alert('scrollstart!');
 });
-$(function(){
-	$('#btn1').click(function(){
-		scroller.scrollTo(3000).done(function(){
-			alert('done!'); // but will not work
-		});
-		setTimeout(function(){
-			scroller.stop(); // because I'll stop it
-		}, 200);
-	});
+scroller.bind('scrollend', function(){
+	alert('scrollend!');
 });
+// scroller.scrollTo(3000);
+// scroller.scrollTo('#footer');
 </script>
 
-<p>will stop scrolling immediately. And this also fires scrollcancel event.</p>
+<p>scrollstart, scrollend and scrollcancel events are available. Use .one for one time event like jQuery's one.</p>
 
-{% highlight javascript %}
-var scroller = $.Tinyscroller();
-scroller.bind('scrollcancel', function(){
-  alert('canceled!');
-});
-$(function(){
-  $('#btn1').click(function(){
-    scroller.scrollTo(3000).done(function(){
-      alert('done!'); // but will not work
-    });
-    setTimeout(function(){
-      scroller.stop(); // because I'll stop it
-    }, 200);
-  });
-});
-{% endhighlight %}
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">scroller</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Tinyscroller</span><span class="p">();</span>
+<span class="nx">scroller</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;scrollstart&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;scrollstart!&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">scroller</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;scrollend&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;scrollend!&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="c1">// scroller.scrollTo(3000);</span>
+<span class="c1">// scroller.scrollTo(&#39;#footer&#39;);</span>
+</code></pre>
+</div>
 
-<button id="btn1">btn1</button>
+
+<button onclick="scroller.scrollTo(3000)">scroller.scrollTo(3000)</button>
+<button onclick="scroller.scrollTo('#footer')">scroller.scrollTo('#footer')</button>
 
 <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
 <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
@@ -96,3 +105,15 @@ $(function(){
 <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
 <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
 
+<button onclick="scroller.scrollTo(200)">scroller.scrollTo(200)</button>
+<button onclick="scroller.scrollTo('#all')">scroller.scrollTo('#all')</button>
+
+	</div>
+
+</div>
+
+<div class="mod-footer" id="footer">copyright (c) 9999 blah blah blah</div>
+
+
+</div></body>
+</html>

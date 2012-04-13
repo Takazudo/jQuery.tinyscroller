@@ -1,4 +1,4 @@
-/*! jQuery.tinyscroller - v0.2.3 -  4/8/2012
+/*! jQuery.tinyscroller - v0.2.3 -  4/14/2012
  * https://github.com/Takazudo/jQuery.tinyscroller
  * Copyright (c) 2012 "Takazudo" Takeshi Takatsudo; Licensed MIT */
 
@@ -138,8 +138,11 @@
 
     })();
     ns.Scroller = (function(_super) {
+      var eventNames;
 
       __extends(Scroller, _super);
+
+      eventNames = ['scrollstart', 'scrollend', 'scrollcancel'];
 
       Scroller.prototype.options = {
         speed: 30,
@@ -151,9 +154,10 @@
       };
 
       function Scroller(options) {
-        this._stepToNext = __bind(this._stepToNext, this);        if (options) this.option(options);
-        this._handleMobile();
+        this._stepToNext = __bind(this._stepToNext, this);        if (!(this instanceof arguments.callee)) return new ns.Scroller(options);
         Scroller.__super__.constructor.apply(this, arguments);
+        if (options) this.option(options);
+        this._handleMobile();
       }
 
       Scroller.prototype._handleMobile = function() {
@@ -234,9 +238,16 @@
       };
 
       Scroller.prototype.option = function(options) {
+        var _this = this;
         if (!options) return this.options;
-        $.extend(this.options, options);
+        this.options = $.extend({}, this.options, options);
         this._handleMobile();
+        $.each(eventNames, function(i, eventName) {
+          if (_this.options[eventName]) {
+            _this.bind(eventName, _this.options[eventName]);
+          }
+          return true;
+        });
         return this;
       };
 
@@ -254,15 +265,17 @@
       return Scroller;
 
     })(ns.Event);
-    $.tinyscroller = new ns.Scroller;
-    $.fn.tinyscrollable = function() {
+    $.fn.tinyscrollable = function(options) {
+      var scroller;
+      scroller = ns.Scroller(options);
       return this.each(function() {
         var $el;
         $el = $(this);
+        $el.data('tinyscroller', scroller);
         if ($el.data('tinyscrollerattached')) return this;
         $el.on('click', function(e) {
           e.preventDefault();
-          return $.tinyscroller.scrollTo(ns.getWhereTo(this));
+          return scroller.scrollTo(ns.getWhereTo(this));
         });
         return $el.data('tinyscrollerattached', true);
       });

@@ -1,44 +1,35 @@
 ---
 layout: default
-title: Stop
+title: Events with API call
 ---
 <script>
 var scroller = $.Tinyscroller();
-scroller.bind('scrollcancel', function(){
-	alert('canceled!');
+scroller.bind('scrollstart', function(){
+	alert('scrollstart!');
 });
-$(function(){
-	$('#btn1').click(function(){
-		scroller.scrollTo(3000).done(function(){
-			alert('done!'); // but will not work
-		});
-		setTimeout(function(){
-			scroller.stop(); // because I'll stop it
-		}, 200);
-	});
+scroller.bind('scrollend', function(){
+	alert('scrollend!');
 });
+// scroller.scrollTo(3000);
+// scroller.scrollTo('#footer');
 </script>
 
-<p>will stop scrolling immediately. And this also fires scrollcancel event.</p>
+<p>scrollstart, scrollend and scrollcancel events are available. Use .one for one time event like jQuery's one.</p>
 
 {% highlight javascript %}
 var scroller = $.Tinyscroller();
-scroller.bind('scrollcancel', function(){
-  alert('canceled!');
+scroller.bind('scrollstart', function(){
+  alert('scrollstart!');
 });
-$(function(){
-  $('#btn1').click(function(){
-    scroller.scrollTo(3000).done(function(){
-      alert('done!'); // but will not work
-    });
-    setTimeout(function(){
-      scroller.stop(); // because I'll stop it
-    }, 200);
-  });
+scroller.bind('scrollend', function(){
+  alert('scrollend!');
 });
+// scroller.scrollTo(3000);
+// scroller.scrollTo('#footer');
 {% endhighlight %}
 
-<button id="btn1">btn1</button>
+<button onclick="scroller.scrollTo(3000)">scroller.scrollTo(3000)</button>
+<button onclick="scroller.scrollTo('#footer')">scroller.scrollTo('#footer')</button>
 
 <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
 <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
@@ -96,3 +87,5 @@ $(function(){
 <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
 <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
 
+<button onclick="scroller.scrollTo(200)">scroller.scrollTo(200)</button>
+<button onclick="scroller.scrollTo('#all')">scroller.scrollTo('#all')</button>

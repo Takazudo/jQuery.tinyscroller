@@ -3,28 +3,30 @@ layout: default
 title: Events
 ---
 <script>
-$.tinyscroller.bind('scrollstart', function(){
-	alert('scrollstart!');
-});
-$.tinyscroller.bind('scrollend', function(){
-	alert('scrollend!');
-});
 $(function(){
-	$('a[href^=#]').tinyscrollable();
+	$('a[href^=#]').tinyscrollable({
+		scrollstart: function(){
+			alert('scrollstart!');
+		},
+		scrollend: function(){
+			alert('scrollend!');
+		}
+	});
 });
 </script>
 
-<p>scrollstart, scrollend and scrollcancel events are available. you can use .one method for one time event binding.</p>
+<p>scrollstart, scrollend and scrollcancel events are available.</p>
 
 {% highlight javascript %}
-$.tinyscroller.bind('scrollstart', function(){
-  alert('scrollstart!');
-});
-$.tinyscroller.bind('scrollend', function(){
-  alert('scrollend!');
-});
 $(function(){
-  $('a[href^=#]').tinyscrollable();
+  $('a[href^=#]').tinyscrollable({
+    scrollstart: function(){
+      alert('scrollstart!');
+    },
+    scrollend: function(){
+      alert('scrollend!');
+    }
+  });
 });
 {% endhighlight %}
 

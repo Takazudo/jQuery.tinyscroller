@@ -4,23 +4,25 @@ title: Options
 ---
 
 <script>
-$.tinyscroller.option({
-	speed:3,
-	maxStep:300,
-	changehash: false
+$(function(){
+  $('a[href^=#]').tinyscrollable({
+    speed:3,
+    maxStep:300,
+    changehash: false
+  });
 });
-$.tinyscroller.live();
 </script>
 
 <p>will change the scroll behavior.</p>
 
 {% highlight javascript %}
-$.tinyscroller.option({
-  speed:3,
-  maxStep:300,
-  changehash: false
+$(function(){
+  $('a[href^=#]').tinyscrollable({
+    speed:3,
+    maxStep:300,
+    changehash: false
+  });
 });
-$.tinyscroller.live();
 {% endhighlight %}
 
 <p>Following values are set as default.</p>
@@ -35,6 +37,8 @@ $.tinyscroller.live();
   selector: 'a[href^=#]:not(.apply-noscroll)' // selector for delegation event binding
 }
 {% endhighlight %}
+
+<p>You can pass event here. See events demo for further info.</p>
 
 <ul>
 	<li><a href="#all">top</a></li>

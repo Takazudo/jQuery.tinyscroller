@@ -138,6 +138,12 @@
   # Scroller
 
   class ns.Scroller extends ns.Event
+
+    eventNames = [
+      'scrollstart'
+      'scrollend'
+      'scrollcancel'
+    ]
     
     options:
 
@@ -149,9 +155,14 @@
       selector: 'a[href^=#]:not(.apply-noscroll)' # selector for delegation event binding
 
     constructor: (options) ->
+
+      # handle instance creation wo new
+      if not (@ instanceof arguments.callee)
+        return new ns.Scroller options
+
+      super
       if options then @option options
       @_handleMobile()
-      super
 
     _handleMobile: ->
       # iOS's scrollTop is pretty different from desktop browsers.
@@ -262,8 +273,13 @@
 
     option: (options) ->
       if not options then return @options
-      $.extend this.options, options
+      @options = $.extend {}, @options, options
       @_handleMobile()
+      
+      $.each eventNames, (i, eventName) =>
+        if @options[eventName]
+          @bind eventName, @options[eventName]
+        true
       @
 
     live: (selector) ->
@@ -275,21 +291,18 @@
       @
 
 
-  # instancify
-  
-  $.tinyscroller = new ns.Scroller
-
-
   # ============================================================
   # jQuery bridges
 
-  $.fn.tinyscrollable = ->
+  $.fn.tinyscrollable = (options) ->
+    scroller = ns.Scroller options
     @each ->
       $el = $(@)
+      $el.data 'tinyscroller', scroller
       if $el.data 'tinyscrollerattached' then return @
       $el.on 'click', (e) ->
         e.preventDefault()
-        $.tinyscroller.scrollTo (ns.getWhereTo @)
+        scroller.scrollTo (ns.getWhereTo @)
       $el.data 'tinyscrollerattached', true
 
 

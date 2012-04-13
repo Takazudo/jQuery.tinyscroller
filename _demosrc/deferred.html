@@ -3,9 +3,11 @@ layout: default
 title: Deferred
 ---
 <script>
+var scroller = $.Tinyscroller();
+
 $(function(){
 	$('#btn1').click(function(){
-		$.tinyscroller.scrollTo(3000).done(function(){
+		scroller.scrollTo(3000).done(function(){
 			alert('done!');
 		});
 	});
@@ -15,9 +17,11 @@ $(function(){
 <p>API returns deferred. use it if you want to know when scrolling ends. Scrolling stop rejects this deferred.</p>
 
 {% highlight javascript %}
+var scroller = $.Tinyscroller;
+
 $(function(){
   $('#btn1').click(function(){
-    $.tinyscroller.scrollTo(3000).done(function(){
+    scroller.scrollTo(3000).done(function(){
       alert('done!');
     });
   });

@@ -20,22 +20,24 @@
 	<div class="mod-article">
 		<h2>Options</h2>
 		<script>
-$.tinyscroller.option({
-	speed:3,
-	maxStep:300,
-	changehash: false
+$(function(){
+  $('a[href^=#]').tinyscrollable({
+    speed:3,
+    maxStep:300,
+    changehash: false
+  });
 });
-$.tinyscroller.live();
 </script>
 
 <p>will change the scroll behavior.</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">tinyscroller</span><span class="p">.</span><span class="nx">option</span><span class="p">({</span>
-  <span class="nx">speed</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span>
-  <span class="nx">maxStep</span><span class="o">:</span><span class="mi">300</span><span class="p">,</span>
-  <span class="nx">changehash</span><span class="o">:</span> <span class="kc">false</span>
+<div class="highlight"><pre><code class="javascript"><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a[href^=#]&#39;</span><span class="p">).</span><span class="nx">tinyscrollable</span><span class="p">({</span>
+    <span class="nx">speed</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span>
+    <span class="nx">maxStep</span><span class="o">:</span><span class="mi">300</span><span class="p">,</span>
+    <span class="nx">changehash</span><span class="o">:</span> <span class="kc">false</span>
+  <span class="p">});</span>
 <span class="p">});</span>
-<span class="nx">$</span><span class="p">.</span><span class="nx">tinyscroller</span><span class="p">.</span><span class="nx">live</span><span class="p">();</span>
 </code></pre>
 </div>
 
@@ -53,6 +55,8 @@ $.tinyscroller.live();
 </code></pre>
 </div>
 
+
+<p>You can pass event here. See events demo for further info.</p>
 
 <ul>
 	<li><a href="#all">top</a></li>
