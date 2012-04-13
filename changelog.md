@@ -1,5 +1,11 @@
 # jQuery.tinyscroller - changelog
 
+## v.0.3.0
+
+allowed plural options for scrolling.  
+In previous version, basically scrolling options are shared with all anchors.  
+But for this, APIs were changed.
+
 ## v.0.2.3
 
 userskip was bugged in iOS. This was caused by iOS's scrollTop mechanism was different from desktop browser.  
