@@ -1,4 +1,4 @@
-/*! jQuery.tinyscroller - v0.3.0 -  4/24/2012
+/*! jQuery.tinyscroller - v0.3.1 -  4/24/2012
  * https://github.com/Takazudo/jQuery.tinyscroller
  * Copyright (c) 2012 "Takazudo" Takeshi Takatsudo; Licensed MIT */
 
