@@ -231,17 +231,17 @@
       if @_cancelNext
         @_cancelNext = false
         @_scrollDefer?.reject()
+        return @
 
       # check whether the scrolling was done or not
-      else if (abs(top - self._endY) <= 1) or (ns.scrollTop() is top)
+      if (abs(top - self._endY) <= 1) or (ns.scrollTop() is top)
         window.scrollTo 0, @_endY
         @_prevY = null
         @_scrollDefer?.resolve()
+        return @
 
       # else, keep going
-      else
-        setTimeout @_stepToNext, o.speed
-
+      setTimeout @_stepToNext, o.speed
       @
 
     scrollTo: (target) ->
@@ -268,8 +268,13 @@
     stop: ->
       # stop can't stop the scorlling immediately.
       # reserve to stop next one.
-      if @_scrollDefer then @_cancelNext = true
-      @
+      $.Deferred (defer) =>
+        if @_scrollDefer
+          @_cancelNext = true
+          @_scrollDefer.fail ->
+            defer.resolve()
+        else
+          defer.resolve()
 
     option: (options) ->
       if not options then return @options

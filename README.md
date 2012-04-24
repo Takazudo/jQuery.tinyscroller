@@ -11,6 +11,7 @@ Simple smooth scroller with events and API.
 * [Events with API call](http://takazudo.github.com/jQuery.tinyscroller/demos/events2.html)
 * [API call](http://takazudo.github.com/jQuery.tinyscroller/demos/apicall.html)
 * [API call - stop](http://takazudo.github.com/jQuery.tinyscroller/demos/stop.html)
+* [API call - stop(chain)](http://takazudo.github.com/jQuery.tinyscroller/demos/stopchain.html)
 * [Deferred](http://takazudo.github.com/jQuery.tinyscroller/demos/deferred.html)
 * [Options](http://takazudo.github.com/jQuery.tinyscroller/demos/options.html)
 * [Options with live](http://takazudo.github.com/jQuery.tinyscroller/demos/options2.html)

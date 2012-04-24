@@ -1,4 +1,4 @@
-/*! jQuery.tinyscroller - v0.3.0 -  4/14/2012
+/*! jQuery.tinyscroller - v0.3.0 -  4/24/2012
  * https://github.com/Takazudo/jQuery.tinyscroller
  * Copyright (c) 2012 "Takazudo" Takeshi Takatsudo; Licensed MIT */
 
@@ -211,13 +211,15 @@
         if (this._cancelNext) {
           this._cancelNext = false;
           if ((_ref2 = this._scrollDefer) != null) _ref2.reject();
-        } else if ((abs(top - self._endY) <= 1) || (ns.scrollTop() === top)) {
+          return this;
+        }
+        if ((abs(top - self._endY) <= 1) || (ns.scrollTop() === top)) {
           window.scrollTo(0, this._endY);
           this._prevY = null;
           if ((_ref3 = this._scrollDefer) != null) _ref3.resolve();
-        } else {
-          setTimeout(this._stepToNext, o.speed);
+          return this;
         }
+        setTimeout(this._stepToNext, o.speed);
         return this;
       };
 
@@ -233,8 +235,17 @@
       };
 
       Scroller.prototype.stop = function() {
-        if (this._scrollDefer) this._cancelNext = true;
-        return this;
+        var _this = this;
+        return $.Deferred(function(defer) {
+          if (_this._scrollDefer) {
+            _this._cancelNext = true;
+            return _this._scrollDefer.fail(function() {
+              return defer.resolve();
+            });
+          } else {
+            return defer.resolve();
+          }
+        });
       };
 
       Scroller.prototype.option = function(options) {
