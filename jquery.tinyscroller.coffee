@@ -187,7 +187,7 @@
       @
 
     _stepToNext: =>
-
+      
       top = ns.scrollTop() # current scrollposition
       o = @options
 
@@ -233,15 +233,20 @@
         @_scrollDefer?.reject()
         return @
 
-      # check whether the scrolling was done or not
-      if (abs(top - self._endY) <= 1) or (ns.scrollTop() is top)
-        window.scrollTo 0, @_endY
-        @_prevY = null
-        @_scrollDefer?.resolve()
-        return @
+      # need zero timeout becaue Safari ignored changed window.scrollTo
+      # value immediately. Oh my!
+      setTimeout =>
+        # check whether the scrolling was done or not
+        if (abs(top - @_endY) <= 1) or (ns.scrollTop() is top)
+          window.scrollTo 0, @_endY
+          @_prevY = null
+          @_scrollDefer?.resolve()
+          return @
+        # else, keep going
+        setTimeout @_stepToNext, o.speed
+      , 0
 
-      # else, keep going
-      setTimeout @_stepToNext, o.speed
+
       @
 
     scrollTo: (target) ->

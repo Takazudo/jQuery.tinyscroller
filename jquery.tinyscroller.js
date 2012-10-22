@@ -209,7 +209,8 @@
       };
 
       Scroller.prototype._stepToNext = function() {
-        var docH, endDistance, nextY, o, offset, planA, planB, top, winH, _ref, _ref1, _ref2;
+        var docH, endDistance, nextY, o, offset, planA, planB, top, winH, _ref, _ref1,
+          _this = this;
         top = ns.scrollTop();
         o = this.options;
         if (o.userskip && this._prevY && (top !== this._prevY)) {
@@ -243,15 +244,18 @@
           }
           return this;
         }
-        if ((abs(top - self._endY) <= 1) || (ns.scrollTop() === top)) {
-          window.scrollTo(0, this._endY);
-          this._prevY = null;
-          if ((_ref2 = this._scrollDefer) != null) {
-            _ref2.resolve();
+        setTimeout(function() {
+          var _ref2;
+          if ((abs(top - _this._endY) <= 1) || (ns.scrollTop() === top)) {
+            window.scrollTo(0, _this._endY);
+            _this._prevY = null;
+            if ((_ref2 = _this._scrollDefer) != null) {
+              _ref2.resolve();
+            }
+            return _this;
           }
-          return this;
-        }
-        setTimeout(this._stepToNext, o.speed);
+          return setTimeout(_this._stepToNext, o.speed);
+        }, 0);
         return this;
       };
 
