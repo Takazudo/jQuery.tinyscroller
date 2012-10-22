@@ -244,7 +244,7 @@
           return @
         # else, keep going
         setTimeout @_stepToNext, o.speed
-      , 0
+      , 5
 
 
       @

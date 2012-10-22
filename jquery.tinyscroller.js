@@ -255,7 +255,7 @@
             return _this;
           }
           return setTimeout(_this._stepToNext, o.speed);
-        }, 0);
+        }, 5);
         return this;
       };
 
