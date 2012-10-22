@@ -243,9 +243,8 @@
           @_scrollDefer?.resolve()
           return @
         # else, keep going
-        setTimeout @_stepToNext, o.speed
-      , 5
-
+        @_stepToNext()
+      , o.speed
 
       @
 

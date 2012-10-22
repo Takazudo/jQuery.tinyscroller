@@ -254,8 +254,8 @@
             }
             return _this;
           }
-          return setTimeout(_this._stepToNext, o.speed);
-        }, 5);
+          return _this._stepToNext();
+        }, o.speed);
         return this;
       };
 
