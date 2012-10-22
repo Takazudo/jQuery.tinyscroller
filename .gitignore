@@ -43,3 +43,6 @@ _cache
 
 # node
 /node_modules
+
+# minified files
+jquery.tinyscroller.min.js
