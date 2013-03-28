@@ -20,7 +20,7 @@ Simple smooth scroller with events and API.
 ## Usage
 
 ```javascript
-$.Tinyscroller().live();
+(new $.Tinyscroller()).live();
 ```
 For more info, see demos
 
