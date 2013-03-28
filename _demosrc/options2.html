@@ -4,7 +4,7 @@ title: Options with live
 ---
 
 <script>
-var scroller = $.Tinyscroller({
+var scroller = new $.Tinyscroller({
 	speed:3,
 	maxStep:300,
 	changehash: false
@@ -15,7 +15,7 @@ scroller.live();
 <p>will change the scroll behavior.</p>
 
 {% highlight javascript %}
-var scroller = $.Tinyscroller({
+var scroller = new $.Tinyscroller({
   speed:3,
   maxStep:300,
   changehash: false

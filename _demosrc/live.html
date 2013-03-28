@@ -3,15 +3,15 @@ layout: default
 title: Live
 ---
 <script>
-$.Tinyscroller().live();
+(new $.Tinyscroller()).live();
 </script>
 
 <p>will bind scrollings with event delegation.</p>
 
 {% highlight javascript %}
-$.Tinyscroller().live();
+(new $.Tinyscroller()).live();
 // or 
-// $.Tinyscroller().live('selector');
+// (new $.Tinyscroller()).live('selector');
 {% endhighlight %}
 
 <ul>

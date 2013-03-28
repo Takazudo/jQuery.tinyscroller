@@ -20,7 +20,7 @@
 	<div class="mod-article">
 		<h2>Stop</h2>
 		<script>
-var scroller = $.Tinyscroller();
+var scroller = new $.Tinyscroller();
 $(function(){
 	$('#btn1').click(function(){
 		scroller.scrollTo(3000).done(function(){
@@ -39,22 +39,22 @@ $(function(){
 
 <p><code>stop</code> returns deferred object which watches stopping scrolling was done.</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">scroller</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Tinyscroller</span><span class="p">();</span>
-<span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#btn1&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">scroller</span><span class="p">.</span><span class="nx">scrollTo</span><span class="p">(</span><span class="mi">3000</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-      <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;done!&#39;</span><span class="p">);</span> <span class="c1">// but will not work</span>
-    <span class="p">});</span>
-    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-      <span class="nx">scroller</span><span class="p">.</span><span class="nx">stop</span><span class="p">().</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">scroller</span><span class="p">.</span><span class="nx">scrollTo</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-          <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;stop and did 2nd scroll!&#39;</span><span class="p">);</span>
-        <span class="p">});</span>
-      <span class="p">});</span>
-    <span class="p">},</span> <span class="mi">200</span><span class="p">);</span>
-  <span class="p">});</span>
-<span class="p">});</span>
-</code></pre>
+<div>
+  <pre><code class='javascript'>var scroller = new $.Tinyscroller();
+$(function(){
+  $('#btn1').click(function(){
+    scroller.scrollTo(3000).done(function(){
+      alert('done!'); // but will not work
+    });
+    setTimeout(function(){
+      scroller.stop().done(function(){
+        scroller.scrollTo(0).done(function(){
+          alert('stop and did 2nd scroll!');
+        });
+      });
+    }, 200);
+  });
+});</code></pre>
 </div>
 
 

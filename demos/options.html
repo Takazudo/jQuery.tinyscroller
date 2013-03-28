@@ -31,28 +31,28 @@ $(function(){
 
 <p>will change the scroll behavior.</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a[href^=#]&#39;</span><span class="p">).</span><span class="nx">tinyscrollable</span><span class="p">({</span>
-    <span class="nx">speed</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span>
-    <span class="nx">maxStep</span><span class="o">:</span><span class="mi">300</span><span class="p">,</span>
-    <span class="nx">changehash</span><span class="o">:</span> <span class="kc">false</span>
-  <span class="p">});</span>
-<span class="p">});</span>
-</code></pre>
+<div>
+  <pre><code class='javascript'>$(function(){
+  $('a[href^=#]').tinyscrollable({
+    speed:3,
+    maxStep:300,
+    changehash: false
+  });
+});</code></pre>
 </div>
 
 
 <p>Following values are set as default.</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="p">{</span>
-  <span class="nx">speed</span> <span class="o">:</span> <span class="mi">30</span><span class="p">,</span> <span class="c1">// scrollstep interval</span>
-  <span class="nx">maxStep</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// max distance(px) per scrollstep</span>
-  <span class="nx">slowdownRate</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span> <span class="c1">// something to define slowdown rate</span>
-  <span class="nx">changehash</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// change hash after scrolling or not</span>
-  <span class="nx">userskip</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// skip all scrolling steps if user scrolled manually while scrolling</span>
-  <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;a[href^=#]:not(.apply-noscroll)&#39;</span> <span class="c1">// selector for delegation event binding</span>
-<span class="p">}</span>
-</code></pre>
+<div>
+  <pre><code class='javascript'>{
+  speed : 30, // scrollstep interval
+  maxStep: 2000, // max distance(px) per scrollstep
+  slowdownRate: 3, // something to define slowdown rate
+  changehash: true, // change hash after scrolling or not
+  userskip: true, // skip all scrolling steps if user scrolled manually while scrolling
+  selector: 'a[href^=#]:not(.apply-noscroll)' // selector for delegation event binding
+}</code></pre>
 </div>
 
 

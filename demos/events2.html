@@ -20,7 +20,7 @@
 	<div class="mod-article">
 		<h2>Events with API call</h2>
 		<script>
-var scroller = $.Tinyscroller();
+var scroller = new $.Tinyscroller();
 scroller.bind('scrollstart', function(){
 	alert('scrollstart!');
 });
@@ -33,16 +33,16 @@ scroller.bind('scrollend', function(){
 
 <p>scrollstart, scrollend and scrollcancel events are available. Use .one for one time event like jQuery's one.</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">scroller</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Tinyscroller</span><span class="p">();</span>
-<span class="nx">scroller</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;scrollstart&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;scrollstart!&#39;</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">scroller</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;scrollend&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;scrollend!&#39;</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="c1">// scroller.scrollTo(3000);</span>
-<span class="c1">// scroller.scrollTo(&#39;#footer&#39;);</span>
-</code></pre>
+<div>
+  <pre><code class='javascript'>var scroller = new $.Tinyscroller();
+scroller.bind('scrollstart', function(){
+  alert('scrollstart!');
+});
+scroller.bind('scrollend', function(){
+  alert('scrollend!');
+});
+// scroller.scrollTo(3000);
+// scroller.scrollTo('#footer');</code></pre>
 </div>
 
 

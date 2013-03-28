@@ -20,7 +20,7 @@
 	<div class="mod-article">
 		<h2>Options with live</h2>
 		<script>
-var scroller = $.Tinyscroller({
+var scroller = new $.Tinyscroller({
 	speed:3,
 	maxStep:300,
 	changehash: false
@@ -30,13 +30,13 @@ scroller.live();
 
 <p>will change the scroll behavior.</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">scroller</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Tinyscroller</span><span class="p">({</span>
-  <span class="nx">speed</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span>
-  <span class="nx">maxStep</span><span class="o">:</span><span class="mi">300</span><span class="p">,</span>
-  <span class="nx">changehash</span><span class="o">:</span> <span class="kc">false</span>
-<span class="p">});</span>
-<span class="nx">scroller</span><span class="p">.</span><span class="nx">live</span><span class="p">();</span>
-</code></pre>
+<div>
+  <pre><code class='javascript'>var scroller = new $.Tinyscroller({
+  speed:3,
+  maxStep:300,
+  changehash: false
+});
+scroller.live();</code></pre>
 </div>
 
 

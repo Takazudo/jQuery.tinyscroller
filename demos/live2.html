@@ -20,15 +20,15 @@
 	<div class="mod-article">
 		<h2>Live with two configs</h2>
 		<script>
-$.Tinyscroller({ changehash: false }).live('a[href="#all"]');
-$.Tinyscroller({ changehash: true }).live('a[href^="#"]:not([href="#all"])');
+(new $.Tinyscroller({ changehash: false })).live('a[href="#all"]');
+(new $.Tinyscroller({ changehash: true })).live('a[href^="#"]:not([href="#all"])');
 </script>
 
 <p>This live binds let you allow changehash about all in-page anchors without [href="#all"].<br>I wanted this because "back to top" links are not to anchor something.</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">Tinyscroller</span><span class="p">({</span> <span class="nx">changehash</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}).</span><span class="nx">live</span><span class="p">(</span><span class="s1">&#39;a[href=&quot;#all&quot;]&#39;</span><span class="p">);</span>
-<span class="nx">$</span><span class="p">.</span><span class="nx">Tinyscroller</span><span class="p">({</span> <span class="nx">changehash</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}).</span><span class="nx">live</span><span class="p">(</span><span class="s1">&#39;a[href^=&quot;#&quot;]:not([href=&quot;#all&quot;])&#39;</span><span class="p">);</span>
-</code></pre>
+<div>
+  <pre><code class='javascript'>(new $.Tinyscroller({ changehash: false })).live('a[href=&quot;#all&quot;]');
+(new $.Tinyscroller({ changehash: true })).live('a[href^=&quot;#&quot;]:not([href=&quot;#all&quot;])');</code></pre>
 </div>
 
 

@@ -34,17 +34,17 @@ $(function(){
 
 <p>scrollstart, scrollend and scrollcancel events are available.</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a[href^=#]&#39;</span><span class="p">).</span><span class="nx">tinyscrollable</span><span class="p">({</span>
-    <span class="nx">scrollstart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-      <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;scrollstart!&#39;</span><span class="p">);</span>
-    <span class="p">},</span>
-    <span class="nx">scrollend</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-      <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;scrollend!&#39;</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">});</span>
-<span class="p">});</span>
-</code></pre>
+<div>
+  <pre><code class='javascript'>$(function(){
+  $('a[href^=#]').tinyscrollable({
+    scrollstart: function(){
+      alert('scrollstart!');
+    },
+    scrollend: function(){
+      alert('scrollend!');
+    }
+  });
+});</code></pre>
 </div>
 
 

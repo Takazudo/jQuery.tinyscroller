@@ -3,7 +3,7 @@ layout: default
 title: Stop
 ---
 <script>
-var scroller = $.Tinyscroller();
+var scroller = new $.Tinyscroller();
 scroller.bind('scrollcancel', function(){
 	alert('canceled!');
 });
@@ -22,7 +22,7 @@ $(function(){
 <p>will stop scrolling immediately. And this also fires scrollcancel event.</p>
 
 {% highlight javascript %}
-var scroller = $.Tinyscroller();
+var scroller = new $.Tinyscroller();
 scroller.bind('scrollcancel', function(){
   alert('canceled!');
 });

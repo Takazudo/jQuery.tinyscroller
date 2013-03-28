@@ -3,23 +3,17 @@
   "description": "smooth scroll. has events and APIs.",
   "version": "0.3.3",
   "homepage": "https://github.com/Takazudo/jQuery.tinyscroller",
-  "author": {
-    "name": "\"Takazudo\" Takeshi Takatsudo",
-    "url": "http://takazudo.github.com/blog/"
-  },
+  "author": "'Takazudo' Takeshi Takatsudo <takazudo@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Takazudo/jQuery.tinyscroller.git"
+    "url": "https://github.com/Takazudo/jQuery.tinyscroller"
   },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ],
-  "dependencies": {
-    "uglify-js": "latest",
-    "coffee-script": "latest",
-    "grunt": "latest"
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-watch": "~0.2.0",
+    "grunt-contrib-uglify": "~0.1.2",
+    "grunt-contrib-concat": "~0.1.3",
+    "grunt-contrib-coffee": "~0.5.0"
   }
 }
 

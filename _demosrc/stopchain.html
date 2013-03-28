@@ -3,7 +3,7 @@ layout: default
 title: Stop
 ---
 <script>
-var scroller = $.Tinyscroller();
+var scroller = new $.Tinyscroller();
 $(function(){
 	$('#btn1').click(function(){
 		scroller.scrollTo(3000).done(function(){
@@ -23,7 +23,7 @@ $(function(){
 <p><code>stop</code> returns deferred object which watches stopping scrolling was done.</p>
 
 {% highlight javascript %}
-var scroller = $.Tinyscroller();
+var scroller = new $.Tinyscroller();
 $(function(){
   $('#btn1').click(function(){
     scroller.scrollTo(3000).done(function(){

@@ -3,15 +3,15 @@ layout: default
 title: Live with two configs
 ---
 <script>
-$.Tinyscroller({ changehash: false }).live('a[href="#all"]');
-$.Tinyscroller({ changehash: true }).live('a[href^="#"]:not([href="#all"])');
+(new $.Tinyscroller({ changehash: false })).live('a[href="#all"]');
+(new $.Tinyscroller({ changehash: true })).live('a[href^="#"]:not([href="#all"])');
 </script>
 
 <p>This live binds let you allow changehash about all in-page anchors without [href="#all"].<br>I wanted this because "back to top" links are not to anchor something.</p>
 
 {% highlight javascript %}
-$.Tinyscroller({ changehash: false }).live('a[href="#all"]');
-$.Tinyscroller({ changehash: true }).live('a[href^="#"]:not([href="#all"])');
+(new $.Tinyscroller({ changehash: false })).live('a[href="#all"]');
+(new $.Tinyscroller({ changehash: true })).live('a[href^="#"]:not([href="#all"])');
 {% endhighlight %}
 
 <ul>

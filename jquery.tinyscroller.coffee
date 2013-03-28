@@ -1,4 +1,4 @@
-(($, window, document) -> # encapsulate whole start
+do ($ = jQuery, window = window, document = document) ->
   
   ns = {}
   $win = $(window)
@@ -155,11 +155,6 @@
       selector: 'a[href^=#]:not(.apply-noscroll)' # selector for delegation event binding
 
     constructor: (options) ->
-
-      # handle instance creation wo new
-      if not (@ instanceof arguments.callee)
-        return new ns.Scroller options
-
       super
       if options then @option options
       @_handleMobile()
@@ -304,7 +299,7 @@
   # jQuery bridges
 
   $.fn.tinyscrollable = (options) ->
-    scroller = ns.Scroller options
+    scroller = new ns.Scroller options
     @each ->
       $el = $(@)
       $el.data 'tinyscroller', scroller
@@ -321,6 +316,3 @@
   
   $.TinyscrollerNs = ns
   $.Tinyscroller = ns.Scroller
-
-
-) jQuery, @, @document # encapsulate whole end
