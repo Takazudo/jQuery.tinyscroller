@@ -1,6 +1,6 @@
 /*! jQuery.tinyscroller (https://github.com/Takazudo/jQuery.tinyscroller)
  * lastupdate: 2013-03-29
- * version: 0.4.0
+ * version: 0.5.0
  * author: 'Takazudo' Takeshi Takatsudo <takazudo@gmail.com>
  * License: MIT */
 (function() {
