@@ -1,5 +1,10 @@
 # jQuery.tinyscroller - changelog
 
+## v.0.4.0
+
+* updated Grunt to v0.4.0
+* make it unallowable to create instance without `new`
+
 ## v.0.3.0
 
 allowed plural options for scrolling.  
