@@ -83,12 +83,13 @@
     })();
     ns.Event = (function() {
 
-      function Event() {
-        this._callbacks = {};
-      }
+      function Event() {}
 
       Event.prototype.bind = function(ev, callback) {
         var evs, name, _base, _i, _len;
+        if (!this._callbacks) {
+          this._callbacks = {};
+        }
         evs = ev.split(' ');
         for (_i = 0, _len = evs.length; _i < _len; _i++) {
           name = evs[_i];
@@ -99,6 +100,9 @@
       };
 
       Event.prototype.one = function(ev, callback) {
+        if (!this._callbacks) {
+          this._callbacks = {};
+        }
         return this.bind(ev, function() {
           this.unbind(ev, arguments.callee);
           return callback.apply(this, arguments);
@@ -108,6 +112,9 @@
       Event.prototype.trigger = function() {
         var args, callback, ev, list, _i, _len, _ref;
         args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+        if (!this._callbacks) {
+          this._callbacks = {};
+        }
         ev = args.shift();
         list = (_ref = this._callbacks) != null ? _ref[ev] : void 0;
         if (!list) {
@@ -124,6 +131,9 @@
 
       Event.prototype.unbind = function(ev, callback) {
         var cb, i, list, _i, _len, _ref;
+        if (!this._callbacks) {
+          this._callbacks = {};
+        }
         if (!ev) {
           this._callbacks = {};
           return this;
@@ -165,12 +175,14 @@
         slowdownRate: 3,
         changehash: true,
         userskip: true,
-        selector: 'a[href^=#]:not(.apply-noscroll)'
+        selector: 'a[href^=#]:not(.apply-noscroll)',
+        adjustEndY: false,
+        dontAdjustEndYIfSelectorIs: null,
+        dontAdjustEndYIfYis: null
       };
 
       function Scroller(options) {
-        this._stepToNext = __bind(this._stepToNext, this);        Scroller.__super__.constructor.apply(this, arguments);
-        if (options) {
+        this._stepToNext = __bind(this._stepToNext, this);        if (options) {
           this.option(options);
         }
         this._handleMobile();
@@ -255,14 +267,41 @@
         return this;
       };
 
-      Scroller.prototype.scrollTo = function(target) {
-        var endY;
+      Scroller.prototype.scrollTo = function(target, localOptions) {
+        var endY, handleAdjustendy;
+        handleAdjustendy = true;
+        if (this.options.changehash) {
+          handleAdjustendy = false;
+        }
+        if (this.options.adjustEndY === false) {
+          handleAdjustendy = false;
+        }
+        if ((localOptions != null ? localOptions.adjustEndY : void 0) === false) {
+          handleAdjustendy = false;
+        }
         if (ns.isHash(target)) {
           this._reservedHash = target;
+          if (this.options.dontAdjustEndYIfSelectorIs) {
+            if ($doc.find(target).is(this.options.dontAdjustEndYIfSelectorIs)) {
+              handleAdjustendy = false;
+            }
+          }
         }
         endY = ns.calcY(target);
         if (endY === false) {
           return this;
+        }
+        if (($.type(this.options.dontAdjustEndYIfYis)) === 'number') {
+          if (endY === this.options.dontAdjustEndYIfYis) {
+            handleAdjustendy = false;
+          }
+        }
+        if ((localOptions != null ? localOptions.adjustEndY : void 0) != null) {
+          endY += localOptions.adjustEndY;
+        } else {
+          if (this.options.adjustEndY !== false) {
+            endY += this.options.adjustEndY;
+          }
         }
         this._endY = endY;
         this._scrollDefer = $.Deferred();

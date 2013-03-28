@@ -15,6 +15,7 @@ Simple smooth scroller with events and API.
 * [Deferred](http://takazudo.github.com/jQuery.tinyscroller/demos/deferred.html)
 * [Options](http://takazudo.github.com/jQuery.tinyscroller/demos/options.html)
 * [Options with live](http://takazudo.github.com/jQuery.tinyscroller/demos/options2.html)
+* [adjustEndY](http://takazudo.github.com/jQuery.tinyscroller/demos/adjustendy.html)
 
 ## Usage
 

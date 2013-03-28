@@ -90,10 +90,8 @@ do ($ = jQuery, window = window, document = document) ->
 
   class ns.Event
 
-    constructor: ->
-      @_callbacks = {}
-
     bind: (ev, callback) ->
+      @_callbacks = {} unless @_callbacks
       evs = ev.split(' ')
       for name in evs
         @_callbacks[name] or= []
@@ -101,11 +99,13 @@ do ($ = jQuery, window = window, document = document) ->
       @
 
     one: (ev, callback) ->
+      @_callbacks = {} unless @_callbacks
       @bind ev, ->
         @unbind(ev, arguments.callee)
         callback.apply(@, arguments)
 
     trigger: (args...) ->
+      @_callbacks = {} unless @_callbacks
       ev = args.shift()
       list = @_callbacks?[ev]
       return unless list
@@ -115,6 +115,7 @@ do ($ = jQuery, window = window, document = document) ->
       @
 
     unbind: (ev, callback) ->
+      @_callbacks = {} unless @_callbacks
       unless ev
         @_callbacks = {}
         return @
@@ -153,9 +154,11 @@ do ($ = jQuery, window = window, document = document) ->
       changehash: true # change hash after scrolling or not
       userskip: true # skip all scrolling steps if user scrolled manually while scrolling
       selector: 'a[href^=#]:not(.apply-noscroll)' # selector for delegation event binding
+      adjustEndY: false
+      dontAdjustEndYIfSelectorIs: null
+      dontAdjustEndYIfYis: null
 
     constructor: (options) ->
-      super
       if options then @option options
       @_handleMobile()
 
@@ -243,15 +246,41 @@ do ($ = jQuery, window = window, document = document) ->
 
       @
 
-    scrollTo: (target) ->
+    scrollTo: (target, localOptions) ->
 
-      # if the target was hash, reserve it
+      handleAdjustendy = true
+
+      # check options whether this scrolling handles adjustEndY or not
+      if @options.changehash
+        handleAdjustendy = false
+      if @options.adjustEndY is false
+        handleAdjustendy = false
+      if localOptions?.adjustEndY is false
+        handleAdjustendy = false
+
       if ns.isHash target
-        @_reservedHash = target
+        @_reservedHash = target # reserve hash
+
+        # ignore adjustY if it matches option
+        if @options.dontAdjustEndYIfSelectorIs
+          if $doc.find(target).is(@options.dontAdjustEndYIfSelectorIs)
+            handleAdjustendy = false
 
       # try to calc endY
       endY = ns.calcY target
-      if endY is false then return @
+      return this if endY is false
+
+      # handle dontAdjustEndYIfYis option
+      if ($.type @options.dontAdjustEndYIfYis) is 'number'
+        if endY is @options.dontAdjustEndYIfYis
+          handleAdjustendy = false
+
+      if localOptions?.adjustEndY?
+        endY += localOptions.adjustEndY
+      else
+        if @options.adjustEndY isnt false
+          endY += @options.adjustEndY
+
       @_endY = endY
 
       # this defer tells scroll end

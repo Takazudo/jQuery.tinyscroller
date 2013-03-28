@@ -1,5 +1,9 @@
 # jQuery.tinyscroller - changelog
 
+## v.0.5.0
+
+* implemented adjustEndY options
+
 ## v.0.4.0
 
 * updated Grunt to v0.4.0
