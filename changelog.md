@@ -1,5 +1,9 @@
 # jQuery.tinyscroller - changelog
 
+## v.0.5.1
+
+* changed to use bind/delegate instead of on for event bindings. This is for old jQuery compatibility.
+
 ## v.0.5.0
 
 * implemented adjustEndY options

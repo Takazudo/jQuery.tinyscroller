@@ -343,7 +343,7 @@
         var self;
         selector = selector || this.options.selector;
         self = this;
-        $doc.on('click', selector, function(e) {
+        $doc.delegate(selector, 'click', function(e) {
           e.preventDefault();
           return self.scrollTo(ns.getWhereTo(this));
         });
@@ -363,7 +363,7 @@
         if ($el.data('tinyscrollerattached')) {
           return this;
         }
-        $el.on('click', function(e) {
+        $el.bind('click', function(e) {
           e.preventDefault();
           return scroller.scrollTo(ns.getWhereTo(this));
         });

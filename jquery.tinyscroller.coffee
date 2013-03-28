@@ -318,7 +318,7 @@ do ($ = jQuery, window = window, document = document) ->
     live: (selector) ->
       selector = selector or @options.selector
       self = @
-      $doc.on 'click', selector, (e) ->
+      $doc.delegate selector, 'click', (e) ->
         e.preventDefault()
         self.scrollTo (ns.getWhereTo @)
       @
@@ -333,7 +333,7 @@ do ($ = jQuery, window = window, document = document) ->
       $el = $(@)
       $el.data 'tinyscroller', scroller
       if $el.data 'tinyscrollerattached' then return @
-      $el.on 'click', (e) ->
+      $el.bind 'click', (e) ->
         e.preventDefault()
         scroller.scrollTo (ns.getWhereTo @)
       $el.data 'tinyscrollerattached', true
