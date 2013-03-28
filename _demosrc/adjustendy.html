@@ -7,8 +7,8 @@ title: Options
 $(function(){
   $('a[href^=#]').tinyscrollable({
     changehash: false,
-		adjustEndY: -110,
-		dontAdjustEndYIfSelectorIs: '#all'
+    adjustEndY: -110,
+    dontAdjustEndYIfSelectorIs: '#all'
   });
 });
 </script>
@@ -39,27 +39,12 @@ h2 {
 {% highlight javascript %}
 $(function(){
   $('a[href^=#]').tinyscrollable({
-    speed:3,
-    maxStep:300,
-    changehash: false
+    changehash: false,
+    adjustEndY: -110,
+    dontAdjustEndYIfSelectorIs: '#all'
   });
 });
 {% endhighlight %}
-
-<p>Following values are set as default.</p>
-
-{% highlight javascript %}
-{
-  speed : 30, // scrollstep interval
-  maxStep: 2000, // max distance(px) per scrollstep
-  slowdownRate: 3, // something to define slowdown rate
-  changehash: true, // change hash after scrolling or not
-  userskip: true, // skip all scrolling steps if user scrolled manually while scrolling
-  selector: 'a[href^=#]:not(.apply-noscroll)' // selector for delegation event binding
-}
-{% endhighlight %}
-
-<p>You can pass event here. See events demo for further info.</p>
 
 <ul>
 	<li><a href="#all">top</a></li>
