@@ -26,7 +26,7 @@ For more info, see demos
 
 ## Depends
 
-jQuery 1.7.2  
+jQuery 1.7.2 (>=1.6.2)
 
 ## Browsers
 
