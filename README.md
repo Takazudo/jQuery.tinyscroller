@@ -1,5 +1,8 @@
 # jQuery.tinyscroller
 
+NOTE: I coded another scroller plugin - [jQuery.EaseScroller](https://github.com/Takazudo/jQuery.EaseScroller).  
+I recoommend you to use it instead of this.
+
 Simple smooth scroller with events and API.
 
 ## demos
